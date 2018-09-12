@@ -1,0 +1,4 @@
+*.pyc
+*.pkl
+/logs_*
+/datasets

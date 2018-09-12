@@ -1,0 +1,722 @@
+===============================================
+  aggr_layers: 2
+  aggregation: last
+  all_dropout: False
+  allow_growth: 0
+  amax: 64
+  att_pool: MAX
+  att_type: SOFT
+  attention_width: 5
+  base_encoder: LAST_LSTM
+  batch_size: 128
+  burn: 0
+  char_emb_size: 20
+  char_enc: RNN
+  char_max: 16
+  cl_alpha: 0.5
+  cl_lambda: 0.0
+  clip_norm: 5
+  clip_output: 0
+  cnn_size: 64
+  cocoa_mode: fo
+  command: train_acc.py --rnn_type SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM --char_enc RNN --char_max 16 --use_cudnn 1 --batch-size 128 --gpu 1 --opt Adam --lr 1E-3 --rnn_layers 3 --epochs 100 --early_stop 0 --num_dense 2 --dataset SNLI --hdim 200 --decay_lr 0.96 --decay_epoch 10 --l2_reg 1E-8 --cnn_size 64 --translate_proj 1 --num_proj 1 --rnn_size 200 --hdim 300 --rnn_layers 3 --sort_batch 1 --use_pos 1 --pos_emb_size 10 --clip_norm 5 --aggr_layers 2
+  comp_layer: MUL_SUB
+  constraint: 0
+  conv_size: 135
+  cost_func: cross
+  cuda: False
+  data_link:
+  dataset: SNLI
+  debugger: 0
+  decay_epoch: 10
+  decay_lr: 0.96
+  decay_stairs: 1
+  decay_steps: 0
+  default_len: 1
+  dev: 1
+  dirty: False
+  dist_bias: 0
+  dmax: 20
+  dropout: 0.8
+  early_stop: 0
+  emb_dropout: 0.8
+  emb_size: 300
+  emb_type: glove
+  enc_only: 0
+  ensemble: False
+  epochs: 100
+  eval: 1
+  eval_train: 1
+  factor: 10
+  factor2: 4
+  factor_proj: 0
+  features: 0
+  final_layer: 1
+  flow_inner: 0
+  flow_intra: 1
+  flow_meta: 1
+  fm_comp_layer: MUL_SUB_CAT
+  gpu: 1
+  hard: 1
+  hdim: 300
+  hogger: 1
+  init: 0.01
+  init_emb: 0.01
+  init_type: xavier
+  injection: 0
+  int_emb_size: 15
+  l2_reg: 1e-08
+  learn_rate: 0.001
+  local_feats: 0
+  log: 1
+  log_dir: logs_thurs2
+  margin: 0.2
+  maxlen: 0
+  mca_types: ALIGN_MAX_MEAN_INTRA
+  normalize_embed: 0
+  num_ap_proj: 1
+  num_class: 3
+  num_cocoa: 1
+  num_com: 1
+  num_dense: 2
+  num_extra_features: 4
+  num_heads: 1
+  num_inter_proj: 1
+  num_intra_proj: 1
+  num_neg: 6
+  num_proj: 1
+  opt: Adam
+  padding: post
+  pos_emb_size: 10
+  predict_binary: 0
+  pretrained: 1
+  proj_intra: 0
+  proj_size: 300
+  qmax: 84
+  rnn_constant: 0
+  rnn_direction: uni
+  rnn_dropout: 0.8
+  rnn_init_type: same
+  rnn_layers: 3
+  rnn_size: 200
+  rnn_type: SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM
+  sampling_mode: Mix
+  save_embed: False
+  save_pred: False
+  seed: 1337
+  show_affinity: 0
+  show_att: 0
+  similarity_layer: False
+  smax: 20
+  sort_batch: 1
+  supply_neg: False
+  temperature: 0.5
+  tensorboard: False
+  test_bsz: 4
+  toy: False
+  trainable: 0
+  transfer_from:
+  translate_proj: 1
+  use_cudnn: 1
+  use_kg: 0
+  use_lower: 1
+  use_pos: 1
+  use_snli: 0
+  var_drop: 1
+  vocab: 0
+  wiggle_after: 0
+  wiggle_lr: 1e-05
+  wiggle_score: 0.0
+  write_qual: 0
+===============================================
+Train=549367 Dev=9842 Test=9824 | questions
+========================================
+List of all Trainable Variables
+ var   0: (86, 20)        char_embed:0
+ var   1: (1, 1, 64)      charRNN/Variable:0
+ var   2: (1, 1, 64)      charRNN/Variable_1:0
+ var   3: <unknown>       charRNN/fw_0/cudnn_lstm/opaque_kernel:0
+ var   4: <unknown>       charRNN/bw_0/cudnn_lstm/opaque_kernel:0
+ var   5: (1, 1, 64)      charRNN_1/Variable:0
+ var   6: (1, 1, 64)      charRNN_1/Variable_1:0
+ var   7: (1, 1, 64)      charRNN_2/Variable:0
+ var   8: (1, 1, 64)      charRNN_2/Variable_1:0
+ var   9: (48, 10)        pos_embed:0
+ var  10: (438, 200)      proj_trans_proj/linear/W_trans_proj_0:0
+ var  11: (200,)          proj_trans_proj/linear/bias_trans_proj_0:0
+ var  12: (438, 200)      proj_trans_proj/linear/W_gate_proj_0:0
+ var  13: (200,)          proj_trans_proj/linear/bias_gate_proj_0:0
+ var  14: (438, 200)      proj_trans_proj/linear/W_trans2_proj_0:0
+ var  15: (200,)          proj_trans_proj/linear/bias_trans2_proj_0:0
+ var  16: (200, 200)      encoding0/proj_att_proj_enccafe0_ca/weights_0_att_proj_enccafe0_ca:0
+ var  17: (1,)            encoding0/fm_enccafe0_interMUL_com_fm/fm_w0:0
+ var  18: (200,)          encoding0/fm_enccafe0_interMUL_com_fm/fm_w:0
+ var  19: (32, 200)       encoding0/fm_enccafe0_interMUL_com_fm/fm_V:0
+ var  20: (1,)            encoding0/fm_enccafe0_interCAT_com_fm/fm_w0:0
+ var  21: (400,)          encoding0/fm_enccafe0_interCAT_com_fm/fm_w:0
+ var  22: (32, 400)       encoding0/fm_enccafe0_interCAT_com_fm/fm_V:0
+ var  23: (1,)            encoding0/fm_enccafe0_interSUB_com_fm/fm_w0:0
+ var  24: (200,)          encoding0/fm_enccafe0_interSUB_com_fm/fm_w:0
+ var  25: (32, 200)       encoding0/fm_enccafe0_interSUB_com_fm/fm_V:0
+ var  26: (200, 200)      encoding0/proj_dotatt_intra_enccafe0_intra_layer/weights_0_dotatt_intra_enccafe0_intra_layer:0
+ var  27: (1,)            encoding0/fm_enccafe0_intraMUL_com_fm/fm_w0:0
+ var  28: (200,)          encoding0/fm_enccafe0_intraMUL_com_fm/fm_w:0
+ var  29: (32, 200)       encoding0/fm_enccafe0_intraMUL_com_fm/fm_V:0
+ var  30: (1,)            encoding0/fm_enccafe0_intraCAT_com_fm/fm_w0:0
+ var  31: (400,)          encoding0/fm_enccafe0_intraCAT_com_fm/fm_w:0
+ var  32: (32, 400)       encoding0/fm_enccafe0_intraCAT_com_fm/fm_V:0
+ var  33: (1,)            encoding0/fm_enccafe0_intraSUB_com_fm/fm_w0:0
+ var  34: (200,)          encoding0/fm_enccafe0_intraSUB_com_fm/fm_w:0
+ var  35: (32, 200)       encoding0/fm_enccafe0_intraSUB_com_fm/fm_V:0
+ var  36: (1, 1, 200)     encoding0/Variable:0
+ var  37: (1, 1, 200)     encoding0/Variable_1:0
+ var  38: <unknown>       encoding0/fw_0/cudnn_lstm/opaque_kernel:0
+ var  39: <unknown>       encoding0/bw_0/cudnn_lstm/opaque_kernel:0
+ var  40: (1, 1, 200)     encoding0/Variable_2:0
+ var  41: (1, 1, 200)     encoding0/Variable_3:0
+ var  42: (400, 400)      encoding1/proj_att_proj_enccafe1_ca/weights_0_att_proj_enccafe1_ca:0
+ var  43: (1,)            encoding1/fm_enccafe1_interMUL_com_fm/fm_w0:0
+ var  44: (400,)          encoding1/fm_enccafe1_interMUL_com_fm/fm_w:0
+ var  45: (32, 400)       encoding1/fm_enccafe1_interMUL_com_fm/fm_V:0
+ var  46: (1,)            encoding1/fm_enccafe1_interCAT_com_fm/fm_w0:0
+ var  47: (800,)          encoding1/fm_enccafe1_interCAT_com_fm/fm_w:0
+ var  48: (32, 800)       encoding1/fm_enccafe1_interCAT_com_fm/fm_V:0
+ var  49: (1,)            encoding1/fm_enccafe1_interSUB_com_fm/fm_w0:0
+ var  50: (400,)          encoding1/fm_enccafe1_interSUB_com_fm/fm_w:0
+ var  51: (32, 400)       encoding1/fm_enccafe1_interSUB_com_fm/fm_V:0
+ var  52: (400, 400)      encoding1/proj_dotatt_intra_enccafe1_intra_layer/weights_0_dotatt_intra_enccafe1_intra_layer:0
+ var  53: (1,)            encoding1/fm_enccafe1_intraMUL_com_fm/fm_w0:0
+ var  54: (400,)          encoding1/fm_enccafe1_intraMUL_com_fm/fm_w:0
+ var  55: (32, 400)       encoding1/fm_enccafe1_intraMUL_com_fm/fm_V:0
+ var  56: (1,)            encoding1/fm_enccafe1_intraCAT_com_fm/fm_w0:0
+ var  57: (800,)          encoding1/fm_enccafe1_intraCAT_com_fm/fm_w:0
+ var  58: (32, 800)       encoding1/fm_enccafe1_intraCAT_com_fm/fm_V:0
+ var  59: (1,)            encoding1/fm_enccafe1_intraSUB_com_fm/fm_w0:0
+ var  60: (400,)          encoding1/fm_enccafe1_intraSUB_com_fm/fm_w:0
+ var  61: (32, 400)       encoding1/fm_enccafe1_intraSUB_com_fm/fm_V:0
+ var  62: (1, 1, 200)     encoding1/Variable:0
+ var  63: (1, 1, 200)     encoding1/Variable_1:0
+ var  64: <unknown>       encoding1/fw_0/cudnn_lstm/opaque_kernel:0
+ var  65: <unknown>       encoding1/bw_0/cudnn_lstm/opaque_kernel:0
+ var  66: (1, 1, 200)     encoding1/Variable_2:0
+ var  67: (1, 1, 200)     encoding1/Variable_3:0
+ var  68: (400, 400)      encoding2/proj_att_proj_enccafe2_ca/weights_0_att_proj_enccafe2_ca:0
+ var  69: (1,)            encoding2/fm_enccafe2_interMUL_com_fm/fm_w0:0
+ var  70: (400,)          encoding2/fm_enccafe2_interMUL_com_fm/fm_w:0
+ var  71: (32, 400)       encoding2/fm_enccafe2_interMUL_com_fm/fm_V:0
+ var  72: (1,)            encoding2/fm_enccafe2_interCAT_com_fm/fm_w0:0
+ var  73: (800,)          encoding2/fm_enccafe2_interCAT_com_fm/fm_w:0
+ var  74: (32, 800)       encoding2/fm_enccafe2_interCAT_com_fm/fm_V:0
+ var  75: (1,)            encoding2/fm_enccafe2_interSUB_com_fm/fm_w0:0
+ var  76: (400,)          encoding2/fm_enccafe2_interSUB_com_fm/fm_w:0
+ var  77: (32, 400)       encoding2/fm_enccafe2_interSUB_com_fm/fm_V:0
+ var  78: (400, 400)      encoding2/proj_dotatt_intra_enccafe2_intra_layer/weights_0_dotatt_intra_enccafe2_intra_layer:0
+ var  79: (1,)            encoding2/fm_enccafe2_intraMUL_com_fm/fm_w0:0
+ var  80: (400,)          encoding2/fm_enccafe2_intraMUL_com_fm/fm_w:0
+ var  81: (32, 400)       encoding2/fm_enccafe2_intraMUL_com_fm/fm_V:0
+ var  82: (1,)            encoding2/fm_enccafe2_intraCAT_com_fm/fm_w0:0
+ var  83: (800,)          encoding2/fm_enccafe2_intraCAT_com_fm/fm_w:0
+ var  84: (32, 800)       encoding2/fm_enccafe2_intraCAT_com_fm/fm_V:0
+ var  85: (1,)            encoding2/fm_enccafe2_intraSUB_com_fm/fm_w0:0
+ var  86: (400,)          encoding2/fm_enccafe2_intraSUB_com_fm/fm_w:0
+ var  87: (32, 400)       encoding2/fm_enccafe2_intraSUB_com_fm/fm_V:0
+ var  88: (1, 1, 200)     encoding2/Variable:0
+ var  89: (1, 1, 200)     encoding2/Variable_1:0
+ var  90: <unknown>       encoding2/fw_0/cudnn_lstm/opaque_kernel:0
+ var  91: <unknown>       encoding2/bw_0/cudnn_lstm/opaque_kernel:0
+ var  92: (1, 1, 200)     encoding2/Variable_2:0
+ var  93: (1, 1, 200)     encoding2/Variable_3:0
+ var  94: (1, 1, 200)     aggr0/Variable:0
+ var  95: (1, 1, 200)     aggr0/Variable_1:0
+ var  96: <unknown>       aggr0/fw_0/cudnn_lstm/opaque_kernel:0
+ var  97: <unknown>       aggr0/bw_0/cudnn_lstm/opaque_kernel:0
+ var  98: (1, 1, 200)     aggr0/Variable_2:0
+ var  99: (1, 1, 200)     aggr0/Variable_3:0
+ var 100: (1, 1, 200)     aggr1/Variable:0
+ var 101: (1, 1, 200)     aggr1/Variable_1:0
+ var 102: <unknown>       aggr1/fw_0/cudnn_lstm/opaque_kernel:0
+ var 103: <unknown>       aggr1/bw_0/cudnn_lstm/opaque_kernel:0
+ var 104: (1, 1, 200)     aggr1/Variable_2:0
+ var 105: (1, 1, 200)     aggr1/Variable_3:0
+ var 106: (1600, 300)     fully_connected/linear/W_trans_high_0:0
+ var 107: (300,)          fully_connected/linear/bias_trans_high_0:0
+ var 108: (1600, 300)     fully_connected/linear/W_gate_high_0:0
+ var 109: (300,)          fully_connected/linear/bias_gate_high_0:0
+ var 110: (1600, 300)     fully_connected/linear/W_trans2_high_0:0
+ var 111: (300,)          fully_connected/linear/bias_trans2_high_0:0
+ var 112: (300, 300)      fully_connected/linear/W_trans_high_1:0
+ var 113: (300,)          fully_connected/linear/bias_trans_high_1:0
+ var 114: (300, 300)      fully_connected/linear/W_gate_high_1:0
+ var 115: (300,)          fully_connected/linear/bias_gate_high_1:0
+ var 116: (300, 3)        fully_connected/fl/final_weights:0
+ var 117: (3,)            fully_connected/fl/bias:0
+Total number of trainable params 2876450
+=====================================
+[SNLI] [Epoch 1] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.63065880537 acc=0.737064658055
+GPU=1 | Wiggle=False
+[Dev] ACC=0.830522251345
+====================================
+[best] ACC=0.830522251345
+[Test] ACC=0.8335708471
+====================================
+Best epoch=1
+[best] ACC=0.8335708471
+Maxed epoch=1
+[max] ACC=0.8335708471
+=====================================
+[SNLI] [Epoch 2] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.471637368202 acc=0.816758196253
+GPU=1 | Wiggle=False
+[Dev] ACC=0.848709612195
+====================================
+[best] ACC=0.848709612195
+[Test] ACC=0.847109120715
+====================================
+Best epoch=2
+[best] ACC=0.847109120715
+Maxed epoch=2
+[max] ACC=0.847109120715
+=====================================
+[SNLI] [Epoch 3] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.429674893618 acc=0.834857208389
+GPU=1 | Wiggle=False
+[Dev] ACC=0.863848810987
+====================================
+[best] ACC=0.863848810987
+[Test] ACC=0.86359934834
+====================================
+Best epoch=3
+[best] ACC=0.86359934834
+Maxed epoch=3
+[max] ACC=0.86359934834
+=====================================
+[SNLI] [Epoch 4] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.401400417089 acc=0.846619837014
+GPU=1 | Wiggle=False
+[Dev] ACC=0.869437106352
+====================================
+[best] ACC=0.869437106352
+[Test] ACC=0.867671009966
+====================================
+Best epoch=4
+[best] ACC=0.867671009966
+Maxed epoch=4
+[max] ACC=0.867671009966
+=====================================
+[SNLI] [Epoch 5] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.380618810654 acc=0.85518241904
+GPU=1 | Wiggle=False
+[Dev] ACC=0.875127006476
+====================================
+[best] ACC=0.875127006476
+[Test] ACC=0.87347312723
+====================================
+Best epoch=5
+[best] ACC=0.87347312723
+Maxed epoch=5
+[max] ACC=0.87347312723
+=====================================
+[SNLI] [Epoch 6] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.362559020519 acc=0.862705623019
+GPU=1 | Wiggle=False
+[Dev] ACC=0.876244665876
+====================================
+[best] ACC=0.876244665876
+[Test] ACC=0.877544788274
+====================================
+Best epoch=6
+[best] ACC=0.877544788274
+Maxed epoch=6
+[max] ACC=0.877544788274
+=====================================
+[SNLI] [Epoch 7] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.347524940968 acc=0.868679771447
+GPU=1 | Wiggle=False
+[Dev] ACC=0.879089615786
+====================================
+[best] ACC=0.879089615786
+[Test] ACC=0.876526872964
+====================================
+Best epoch=7
+[best] ACC=0.876526872964
+Maxed epoch=6
+[max] ACC=0.877544788274
+=====================================
+[SNLI] [Epoch 8] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.332629770041 acc=0.874644818492
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882340987846
+====================================
+[best] ACC=0.882340987846
+[Test] ACC=0.880700325539
+====================================
+Best epoch=8
+[best] ACC=0.880700325539
+Maxed epoch=8
+[max] ACC=0.880700325539
+=====================================
+[SNLI] [Epoch 9] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.319047808647 acc=0.879634197177
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882849014585
+====================================
+[best] ACC=0.882849014585
+[Test] ACC=0.880903908795
+====================================
+Best epoch=9
+[best] ACC=0.880903908795
+Maxed epoch=9
+[max] ACC=0.880903908795
+=====================================
+[SNLI] [Epoch 10] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.305823266506 acc=0.88473279247
+GPU=1 | Wiggle=False
+[Dev] ACC=0.883763462784
+====================================
+[best] ACC=0.883763462784
+[Test] ACC=0.882532573096
+====================================
+Best epoch=10
+[best] ACC=0.882532573096
+Maxed epoch=10
+[max] ACC=0.882532573096
+=====================================
+[SNLI] [Epoch 11] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.295127213001 acc=0.889014083484
+GPU=1 | Wiggle=False
+[Dev] ACC=0.883661857637
+====================================
+[best] ACC=0.883763462784
+[Test] ACC=0.879885993485
+====================================
+Best epoch=10
+[best] ACC=0.882532573096
+Maxed epoch=10
+[max] ACC=0.882532573096
+=====================================
+[SNLI] [Epoch 12] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.283636599779 acc=0.893035074915
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882442593042
+====================================
+[best] ACC=0.883763462784
+[Test] ACC=0.884466612378
+====================================
+Best epoch=10
+[best] ACC=0.882532573096
+Maxed epoch=12
+[max] ACC=0.884466612378
+=====================================
+[SNLI] [Epoch 13] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.273550629616 acc=0.896897702267
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882747409136
+====================================
+[best] ACC=0.883763462784
+[Test] ACC=0.88293973922
+====================================
+Best epoch=10
+[best] ACC=0.882532573096
+Maxed epoch=12
+[max] ACC=0.884466612378
+=====================================
+[SNLI] [Epoch 14] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.265456646681 acc=0.900292518482
+GPU=1 | Wiggle=False
+[Dev] ACC=0.880715301453
+====================================
+[best] ACC=0.883763462784
+[Test] ACC=0.882634364627
+====================================
+Best epoch=10
+[best] ACC=0.882532573096
+Maxed epoch=12
+[max] ACC=0.884466612378
+=====================================
+[SNLI] [Epoch 15] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.255185931921 acc=0.903947634278
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882239382094
+====================================
+[best] ACC=0.883763462784
+[Test] ACC=0.885280944431
+====================================
+Best epoch=10
+[best] ACC=0.882532573096
+Maxed epoch=15
+[max] ACC=0.885280944431
+=====================================
+[SNLI] [Epoch 16] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.248811915517 acc=0.906213878884
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882442593126
+====================================
+[best] ACC=0.883763462784
+[Test] ACC=0.884568404103
+====================================
+Best epoch=10
+[best] ACC=0.882532573096
+Maxed epoch=15
+[max] ACC=0.885280944431
+=====================================
+[SNLI] [Epoch 17] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.242210283875 acc=0.908432796293
+GPU=1 | Wiggle=False
+[Dev] ACC=0.883865067761
+====================================
+[best] ACC=0.883865067761
+[Test] ACC=0.885789902474
+====================================
+Best epoch=17
+[best] ACC=0.885789902474
+Maxed epoch=17
+[max] ACC=0.885789902474
+=====================================
+[SNLI] [Epoch 18] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.234539583325 acc=0.911654686213
+GPU=1 | Wiggle=False
+[Dev] ACC=0.885185937805
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.886706025864
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 19] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.229683935642 acc=0.91336938695
+GPU=1 | Wiggle=False
+[Dev] ACC=0.883966673428
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.881616449706
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 20] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.223495513201 acc=0.91579217536
+GPU=1 | Wiggle=False
+[Dev] ACC=0.880613696391
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.883550488599
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 21] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.219367370009 acc=0.917171945167
+GPU=1 | Wiggle=False
+[Dev] ACC=0.88193456583
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.883448696874
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 22] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.216092213988 acc=0.918318719546
+GPU=1 | Wiggle=False
+[Dev] ACC=0.88213777656
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.88293973922
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 23] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.21187953651 acc=0.91993876589
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882544198624
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.882736156352
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 24] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.209346175194 acc=0.921225701581
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882036171583
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.882939739414
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 25] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.206682220101 acc=0.922012061155
+GPU=1 | Wiggle=False
+[Dev] ACC=0.881426539006
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.883346905537
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 26] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.204228892922 acc=0.922873052077
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882544198019
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.883652280324
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 27] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.200678810477 acc=0.924332914065
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882544198322
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.881820032573
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 28] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.199405044317 acc=0.92456226894
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882137776947
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.883041530945
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 29] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.198212921619 acc=0.925146577789
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882645803468
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.881107492051
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 30] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.196672797203 acc=0.925756370515
+GPU=1 | Wiggle=False
+[Dev] ACC=0.881528144759
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.880191368272
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 31] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.195338442922 acc=0.926282430507
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882036171583
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.88039495114
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 32] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.194788843393 acc=0.926495402892
+GPU=1 | Wiggle=False
+[Dev] ACC=0.881426539394
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.881311074919
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 33] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.194180905819 acc=0.926475379847
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882340987374
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.882328990228
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 34] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.192690238357 acc=0.926988697903
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882645803468
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.881311074919
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 35] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.191669434309 acc=0.927565725645
+GPU=1 | Wiggle=False
+[Dev] ACC=0.881934565915
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.880903908795
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 36] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.19108594954 acc=0.92796618654
+GPU=1 | Wiggle=False
+[Dev] ACC=0.883153830595
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.881005700326
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 37] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.191228806973 acc=0.927487453743
+GPU=1 | Wiggle=False
+[Dev] ACC=0.882442593042
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.881107491857
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 38] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.189922258258 acc=0.928255610549
+GPU=1 | Wiggle=False
+[Dev] ACC=0.881934565915
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.881005700326
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
+[SNLI] [Epoch 39] [SOFT_HP_CHAR_CAFE_RESFM_HIGH_LSTM] loss=0.189682155848 acc=0.928344804112
+GPU=1 | Wiggle=False
+[Dev] ACC=0.881528144456
+====================================
+[best] ACC=0.885185937805
+[Test] ACC=0.88151465798
+====================================
+Best epoch=18
+[best] ACC=0.886706025864
+Maxed epoch=18
+[max] ACC=0.886706025864
+=====================================
