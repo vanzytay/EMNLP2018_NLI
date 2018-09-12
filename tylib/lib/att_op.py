@@ -155,53 +155,53 @@ def alignment_compare(q1, q2, _q1, _q2, reuse=None,
 	return features1, features2, latent_features1, latent_features2
 
 def residual_alignment(input_a, input_b, mask_a, mask_b, num_split,
-                            reuse=None, name='', k=32, init=None,
-                            is_train=None, dropout=None):
-    """ Residual Alignment with Dot Attention
-    """
+							reuse=None, name='', k=32, init=None,
+							is_train=None, dropout=None):
+	""" Residual Alignment with Dot Attention
+	"""
 
-    orig_a = input_a
-    orig_b = input_b
-    if(num_split>1):
-        split_a = tf.split(input_a, num_split, axis=2)
-        split_b = tf.split(input_b, num_split, axis=2)
-    else:
-        split_a, split_b = [input_a], [input_b]
+	orig_a = input_a
+	orig_b = input_b
+	if(num_split>1):
+		split_a = tf.split(input_a, num_split, axis=2)
+		split_b = tf.split(input_b, num_split, axis=2)
+	else:
+		split_a, split_b = [input_a], [input_b]
 
-    output = []
-    _dim = input_a.get_shape().as_list()[2]
-    ru = bool(False or reuse)
-    for i in range(num_split):
-        for j in range(num_split):
-            _a = split_a[i]
-            _b = split_b[j]
-            _alen = tf.shape(_a)[1]
-            _blen = tf.shape(_b)[1]
-            fm = tf.matmul(_a, tf.transpose(_b, [0,2,1]))
-            ru = True
-            fm = tf.reshape(fm, [-1, _alen * _blen, 1])
-            output.append(fm)
-    output = tf.concat(output, 2)
-    output = tf.reshape(output, [-1, _alen * _blen, num_split * num_split])
+	output = []
+	_dim = input_a.get_shape().as_list()[2]
+	ru = bool(False or reuse)
+	for i in range(num_split):
+		for j in range(num_split):
+			_a = split_a[i]
+			_b = split_b[j]
+			_alen = tf.shape(_a)[1]
+			_blen = tf.shape(_b)[1]
+			fm = tf.matmul(_a, tf.transpose(_b, [0,2,1]))
+			ru = True
+			fm = tf.reshape(fm, [-1, _alen * _blen, 1])
+			output.append(fm)
+	output = tf.concat(output, 2)
+	output = tf.reshape(output, [-1, _alen * _blen, num_split * num_split])
 
-    output = tf.reduce_max(output, 2)
-    y = tf.reshape(output, [-1, _alen, _blen])
+	output = tf.reduce_max(output, 2)
+	y = tf.reshape(output, [-1, _alen, _blen])
 
-    _y = tf.transpose(y, [0,2,1])
-    mask_b = tf.expand_dims(mask_b, 1)
-    mask_a = tf.expand_dims(mask_a, 1)
-    # bsz x 1 x b_len
-    mask_a = tf.tile(mask_a, [1, _blen, 1])
-    mask_b = tf.tile(mask_b, [1, _alen, 1])
-    _y = softmax_mask(_y, mask_a)
-    y = softmax_mask(y, mask_b)
-    att2 = tf.nn.softmax(_y)
-    att1 = tf.nn.softmax(y)
-    final_a = tf.matmul(att2, orig_a)
-    final_b = tf.matmul(att1, orig_b)
-    _a2 = att2
-    _a1 = att1
-    return final_a, final_b, y
+	_y = tf.transpose(y, [0,2,1])
+	mask_b = tf.expand_dims(mask_b, 1)
+	mask_a = tf.expand_dims(mask_a, 1)
+	# bsz x 1 x b_len
+	mask_a = tf.tile(mask_a, [1, _blen, 1])
+	mask_b = tf.tile(mask_b, [1, _alen, 1])
+	_y = softmax_mask(_y, mask_a)
+	y = softmax_mask(y, mask_b)
+	att2 = tf.nn.softmax(_y)
+	att1 = tf.nn.softmax(y)
+	final_a = tf.matmul(att2, orig_a)
+	final_b = tf.matmul(att1, orig_b)
+	_a2 = att2
+	_a1 = att1
+	return final_a, final_b, y
 
 
 def factor_flow2(q1_embed, q2_embed, q1_len, q2_len, q1_max, q2_max,
